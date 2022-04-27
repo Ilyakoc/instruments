@@ -93,16 +93,6 @@
 
 */?>
 
-<?if(D::yd()->isActive('shop') && (int)D::cms('shop_enable_attributes') && count($product->productAttributes)):?>
-<div class="product-attributes">
-	<ul>
-		<?php foreach ($product->productAttributes as $productAttribute):?>
-			<li><span><?=$productAttribute->eavAttribute->name;?></span><span><?=$productAttribute->value;?></span></li>
-		<?php endforeach;?>
-	</ul>
-</div>
-<?php endif;?>
-
 <div class="buy">
 	 <!--  <ul class="counter_number">
             <li class="counter_numbe_minus">-</li>
@@ -149,6 +139,15 @@
 	<?=$product->description?>
 </div>
 <?endif?>
+    <?if(D::yd()->isActive('shop') && (int)D::cms('shop_enable_attributes') && count($product->productAttributes)):?>
+        <div class="product-attributes">
+            <ul>
+                <?php foreach ($product->productAttributes as $productAttribute):?>
+                    <li><span><?=$productAttribute->eavAttribute->name;?></span><span><?=$productAttribute->value;?></span></li>
+                <?php endforeach;?>
+            </ul>
+        </div>
+    <?php endif;?>
 </div>
 
 <?if(D::cms('shop_enable_reviews')) $this->widget('widget.productReviews.ProductReviews', array('product_id' => $product->id))?>
